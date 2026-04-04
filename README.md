@@ -1,6 +1,12 @@
-# 💥 O Que Vai Fazer Você Passar
+#  O Que Vai Fazer Você Passar
 
 > Guia de estudos interativo para FUVEST e ENEM — com checklist semanal, contagem regressiva e links organizados por matéria.
+
+<p align="center">
+  <a href="https://kelvinrosendo.github.io/Guia-De-Estudos/" target="_blank">
+    <img src="https://img.shields.io/badge/🚀%20Acessar%20o%20Site-Estudar%20Agora-blue?style=for-the-badge" />
+  </a>
+</p>
 
 ---
 
@@ -8,7 +14,10 @@
 
 Um site de estudos feito pra quem quer parar de enrolar e começar a executar.
 
-Nada de app complicado, nada de cadastro, nada de mensalidade. Abre no navegador e já funciona. O foco é simples: **você estuda, você marca, você acompanha**.
+Nada de app complicado, nada de cadastro, nada de mensalidade. Abre no navegador e já funciona.  
+👉 **Acesse direto aqui:** https://kelvinrosendo.github.io/Guia-De-Estudos/
+
+O foco é simples: **você estuda, você marca, você acompanha**.
 
 ---
 
