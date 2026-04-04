@@ -738,6 +738,182 @@
   .materia-card:nth-child(4) { animation: fadeUp 0.5s 0.3s ease both; }
   .materia-card:nth-child(5) { animation: fadeUp 0.5s 0.35s ease both; }
   .fuvest-banner { animation: fadeUp 0.5s 0.4s ease both; }
+
+  /* CRONOGRAMA */
+  .cronograma-section {
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .cronograma-title {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-muted);
+    margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+
+  .cronograma-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .crono-tab {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.04em;
+  }
+
+  .crono-tab:hover { border-color: var(--ink-muted); color: var(--ink); }
+
+  .crono-tab.active {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+
+  .crono-day { display: none; }
+  .crono-day.active { display: flex; flex-direction: column; gap: 10px; }
+
+  .crono-slot {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .crono-slot-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .crono-slot-icon {
+    font-size: 18px;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .crono-slot-info { flex: 1; }
+
+  .crono-slot-materia {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    display: block;
+  }
+
+  .crono-slot-tipo {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    margin-top: 2px;
+    display: block;
+  }
+
+  .crono-slot-tempo {
+    font-size: 12px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .crono-slot-body {
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .crono-aula-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .crono-aula-num {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ink-faint);
+    width: 18px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .crono-aula-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 5px 11px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    flex: 1;
+  }
+
+  .crono-aula-link:hover { border-color: currentColor; opacity: 0.8; }
+
+  .crono-aula-link.placeholder {
+    opacity: 0.45;
+    cursor: default;
+    font-style: italic;
+  }
+
+  .crono-aula-link.placeholder:hover { border-color: transparent; opacity: 0.45; }
+
+  .crono-aula-link .arr { font-size: 11px; opacity: 0.6; }
+
+  /* cores por matéria nos slots */
+  .crono-slot.sq .crono-slot-icon { background: var(--quimica-bg); }
+  .crono-slot.sq .crono-aula-link { color: var(--quimica); background: var(--quimica-bg); }
+  .crono-slot.sq .crono-slot-materia { color: var(--quimica); }
+
+  .crono-slot.sp .crono-slot-icon { background: var(--portugues-bg); }
+  .crono-slot.sp .crono-aula-link { color: var(--portugues); background: var(--portugues-bg); }
+  .crono-slot.sp .crono-slot-materia { color: var(--portugues); }
+
+  .crono-slot.sm .crono-slot-icon { background: var(--matematica-bg); }
+  .crono-slot.sm .crono-aula-link { color: var(--matematica); background: var(--matematica-bg); }
+  .crono-slot.sm .crono-slot-materia { color: var(--matematica); }
+
+  .crono-slot.sg .crono-slot-icon { background: var(--geo-bg); }
+  .crono-slot.sg .crono-aula-link { color: var(--geo); background: var(--geo-bg); }
+  .crono-slot.sg .crono-slot-materia { color: var(--geo); }
+
+  .crono-slot.sh .crono-slot-icon { background: var(--historia-bg); }
+  .crono-slot.sh .crono-aula-link { color: var(--historia); background: var(--historia-bg); }
+  .crono-slot.sh .crono-slot-materia { color: var(--historia); }
+
+  .crono-slot.sr { border-left: 3px solid var(--fuvest); }
+  .crono-slot.sr .crono-slot-icon { background: var(--fuvest-bg); }
+  .crono-slot.sr .crono-aula-link { color: var(--fuvest); background: var(--fuvest-bg); }
+  .crono-slot.sr .crono-slot-materia { color: var(--fuvest); }
 </style>
 </head>
 <body>
@@ -1004,6 +1180,360 @@
 
   </div>
 
+  <!-- CRONOGRAMA DIÁRIO -->
+  <div class="cronograma-section">
+    <p class="cronograma-title">— cronograma de aulas · progressão por dia</p>
+
+    <div class="cronograma-tabs">
+      <button class="crono-tab active" onclick="switchDay('seg', this)">Segunda</button>
+      <button class="crono-tab" onclick="switchDay('ter', this)">Terça</button>
+      <button class="crono-tab" onclick="switchDay('qua', this)">Quarta</button>
+      <button class="crono-tab" onclick="switchDay('qui', this)">Quinta</button>
+      <button class="crono-tab" onclick="switchDay('sex', this)">Sexta</button>
+      <button class="crono-tab" onclick="switchDay('sab', this)">Sábado</button>
+    </div>
+
+    <!-- SEGUNDA -->
+    <div class="crono-day active" id="crono-seg">
+
+      <div class="crono-slot sq">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">🧪</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Química</span>
+            <span class="crono-slot-tipo">Videoaula</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">A1</span>
+            <a href="#" class="crono-aula-link placeholder"><span class="arr">↗</span> Aula 1 · adicionar link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sq">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">🧪</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Química</span>
+            <span class="crono-slot-tipo">Questões</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">Q1</span>
+            <a href="https://www.estuda.com/questoes/?categoria=quimica" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Questões de Química · Estuda.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sm">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">📐</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Matemática</span>
+            <span class="crono-slot-tipo">Questões</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">Q1</span>
+            <a href="https://www.estuda.com/questoes/?categoria=matematica" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Questões de Matemática · Estuda.com</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TERÇA -->
+    <div class="crono-day" id="crono-ter">
+
+      <div class="crono-slot sq">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">🧪</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Química</span>
+            <span class="crono-slot-tipo">Videoaula</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">A2</span>
+            <a href="#" class="crono-aula-link placeholder"><span class="arr">↗</span> Aula 2 · adicionar link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sp">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">📖</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Português</span>
+            <span class="crono-slot-tipo">Videoaula</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">A1</span>
+            <a href="#" class="crono-aula-link placeholder"><span class="arr">↗</span> Aula 1 · adicionar link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sp">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">📖</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Português</span>
+            <span class="crono-slot-tipo">Questões</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">Q1</span>
+            <a href="https://www.qconcursos.com/questoes-de-vestibular/disciplinas/letras-portugues" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Questões de Português · Qconcursos</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- QUARTA -->
+    <div class="crono-day" id="crono-qua">
+
+      <div class="crono-slot sq">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">🧪</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Química</span>
+            <span class="crono-slot-tipo">Questões</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">Q2</span>
+            <a href="https://www.qconcursos.com/questoes-de-vestibular/disciplinas/quimica" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Questões de Química · Qconcursos</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sm">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">📐</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Matemática</span>
+            <span class="crono-slot-tipo">Videoaula</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">A1</span>
+            <a href="#" class="crono-aula-link placeholder"><span class="arr">↗</span> Aula 1 · adicionar link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sm">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">📐</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Matemática</span>
+            <span class="crono-slot-tipo">Questões</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">Q2</span>
+            <a href="https://www.qconcursos.com/questoes-de-vestibular/disciplinas/matematica" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Questões de Matemática · Qconcursos</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- QUINTA -->
+    <div class="crono-day" id="crono-qui">
+
+      <div class="crono-slot sq">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">🧪</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Química</span>
+            <span class="crono-slot-tipo">Videoaula</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">A3</span>
+            <a href="#" class="crono-aula-link placeholder"><span class="arr">↗</span> Aula 3 · adicionar link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sp">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">📖</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Português</span>
+            <span class="crono-slot-tipo">Questões</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">Q2</span>
+            <a href="https://www.estuda.com/questoes/?categoria=portugues" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Questões de Português · Estuda.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sh">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">🏛️</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">História</span>
+            <span class="crono-slot-tipo">Videoaula</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">A1</span>
+            <a href="#" class="crono-aula-link placeholder"><span class="arr">↗</span> Aula 1 · adicionar link</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SEXTA -->
+    <div class="crono-day" id="crono-sex">
+
+      <div class="crono-slot sq">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">🧪</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Química</span>
+            <span class="crono-slot-tipo">Questões</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">Q3</span>
+            <a href="https://vestibulares.fuvest.br/provas" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Questões FUVEST · Química</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sm">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">📐</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Matemática</span>
+            <span class="crono-slot-tipo">Questões</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">Q3</span>
+            <a href="https://vestibulares.fuvest.br/provas" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Questões FUVEST · Matemática</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sg">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">🌎</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Geografia</span>
+            <span class="crono-slot-tipo">Videoaula</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">A1</span>
+            <a href="#" class="crono-aula-link placeholder"><span class="arr">↗</span> Aula 1 · adicionar link</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SÁBADO -->
+    <div class="crono-day" id="crono-sab">
+
+      <div class="crono-slot sr">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">🎯</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Revisão FUVEST</span>
+            <span class="crono-slot-tipo">Provas antigas</span>
+          </div>
+          <span class="crono-slot-tempo">~40 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">P1</span>
+            <a href="https://vestibulares.fuvest.br/provas" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Banco de Provas FUVEST</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sp">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">📖</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">Português</span>
+            <span class="crono-slot-tipo">Interpretação de texto</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">Q3</span>
+            <a href="https://www.estuda.com/questoes/?categoria=portugues" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Interpretação de texto · Estuda.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="crono-slot sh">
+        <div class="crono-slot-header">
+          <div class="crono-slot-icon">🏛️🌎</div>
+          <div class="crono-slot-info">
+            <span class="crono-slot-materia">História + Geografia</span>
+            <span class="crono-slot-tipo">Questões</span>
+          </div>
+          <span class="crono-slot-tempo">~20 min</span>
+        </div>
+        <div class="crono-slot-body">
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">Q1</span>
+            <a href="https://www.qconcursos.com/questoes-de-vestibular/disciplinas/historia" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Questões de História · Qconcursos</a>
+          </div>
+          <div class="crono-aula-item">
+            <span class="crono-aula-num">Q1</span>
+            <a href="https://www.qconcursos.com/questoes-de-vestibular/disciplinas/geografia" target="_blank" class="crono-aula-link"><span class="arr">↗</span> Questões de Geografia · Qconcursos</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- CHECKLIST SEMANAL -->
   <div class="checklist-section">
     <p class="checklist-section-title">— checklist diária · seg a sáb</p>
@@ -1063,6 +1593,24 @@
   function tickCountdowns() {
     updateCountdown(FUVEST_DATE, ['fv-days','fv-hours','fv-mins','fv-secs']);
     updateCountdown(ENEM_DATE,   ['en-days','en-hours','en-mins','en-secs']);
+  }
+
+  function switchDay(id, btn) {
+    document.querySelectorAll('.crono-day').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.crono-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('crono-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Abre o dia atual automaticamente
+  const DAY_MAP = ['sab', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab'];
+  const todayKey = DAY_MAP[new Date().getDay()];
+  const todayTab = document.querySelector(`.crono-tab[onclick*="'${todayKey}'"]`);
+  if (todayTab) {
+    document.querySelectorAll('.crono-day').forEach(d => d.classList.remove('active'));
+    document.querySelectorAll('.crono-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('crono-' + todayKey).classList.add('active');
+    todayTab.classList.add('active');
   }
 
   tickCountdowns();
