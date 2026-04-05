@@ -1,0 +1,547 @@
+/* MATÉRIAS */
+.materias-title {
+  font-family: 'Fraunces', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.materia-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.materia-card:hover { box-shadow: 0 2px 16px rgba(28,26,20,0.07); }
+
+.materia-card:nth-child(1) { animation: fadeUp 0.5s 0.15s ease both; }
+.materia-card:nth-child(2) { animation: fadeUp 0.5s 0.20s ease both; }
+.materia-card:nth-child(3) { animation: fadeUp 0.5s 0.25s ease both; }
+.materia-card:nth-child(4) { animation: fadeUp 0.5s 0.30s ease both; }
+.materia-card:nth-child(5) { animation: fadeUp 0.5s 0.35s ease both; }
+
+.materia-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.materia-header:hover { background: var(--cream); }
+
+.m-icon {
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.m-info { flex: 1; }
+
+.m-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  display: block;
+}
+
+.m-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 9px;
+  border-radius: 20px;
+  margin-top: 3px;
+}
+
+.m-count { font-size: 12px; color: var(--ink-faint); white-space: nowrap; }
+
+.m-chevron {
+  width: 18px;
+  height: 18px;
+  color: var(--ink-faint);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.materia-card.open .m-chevron { transform: rotate(180deg); }
+
+.materia-body {
+  display: none;
+  padding: 0 18px 16px;
+  border-top: 1px solid var(--rule);
+}
+
+.materia-card.open .materia-body { display: block; }
+
+.section-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding-top: 14px;
+}
+
+@media (max-width: 500px) {
+  .section-row { grid-template-columns: 1fr; }
+}
+
+.col-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  margin-bottom: 8px;
+}
+
+.link-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.link-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 5px 11px;
+  border-radius: 8px;
+  transition: all 0.15s;
+  border: 1px solid transparent;
+}
+
+.link-list a:hover { border-color: currentColor; opacity: 0.8; }
+.link-list a .arr { font-size: 11px; opacity: 0.6; }
+
+/* CORES POR MATÉRIA */
+.q .m-icon { background: var(--quimica-bg); }
+.q .m-badge { background: var(--quimica-pill); color: var(--quimica); }
+.q .link-list a { color: var(--quimica); background: var(--quimica-bg); }
+
+.p .m-icon { background: var(--portugues-bg); }
+.p .m-badge { background: var(--portugues-pill); color: var(--portugues); }
+.p .link-list a { color: var(--portugues); background: var(--portugues-bg); }
+
+.m .m-icon { background: var(--matematica-bg); }
+.m .m-badge { background: var(--matematica-pill); color: var(--matematica); }
+.m .link-list a { color: var(--matematica); background: var(--matematica-bg); }
+
+.g .m-icon { background: var(--geo-bg); }
+.g .m-badge { background: var(--geo-pill); color: var(--geo); }
+.g .link-list a { color: var(--geo); background: var(--geo-bg); }
+
+.h .m-icon { background: var(--historia-bg); }
+.h .m-badge { background: var(--historia-pill); color: var(--historia); }
+.h .link-list a { color: var(--historia); background: var(--historia-bg); }
+
+/* CRONOGRAMA */
+.cronograma-section { margin-top: 2.5rem; margin-bottom: 2rem; }
+
+.cronograma-title {
+  font-family: 'Fraunces', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.cronograma-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.crono-tab {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.04em;
+}
+
+.crono-tab:hover { border-color: var(--ink-muted); color: var(--ink); }
+.crono-tab.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+.crono-day { display: none; }
+.crono-day.active { display: flex; flex-direction: column; gap: 10px; }
+
+.crono-slot {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.crono-slot-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.crono-slot-icon {
+  font-size: 18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.crono-slot-info { flex: 1; }
+
+.crono-slot-materia {
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+}
+
+.crono-slot-tipo {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  margin-top: 2px;
+  display: block;
+}
+
+.crono-slot-tempo {
+  font-size: 12px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.crono-slot-body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.crono-aula-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.crono-aula-num {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  width: 18px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.crono-aula-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 5px 11px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+  flex: 1;
+}
+
+.crono-aula-link:hover { border-color: currentColor; opacity: 0.8; }
+
+.crono-aula-link.placeholder {
+  opacity: 0.45;
+  cursor: default;
+  font-style: italic;
+}
+
+.crono-aula-link.placeholder:hover { border-color: transparent; opacity: 0.45; }
+.crono-aula-link .arr { font-size: 11px; opacity: 0.6; }
+
+/* cores crono */
+.crono-slot.sq .crono-slot-icon { background: var(--quimica-bg); }
+.crono-slot.sq .crono-aula-link { color: var(--quimica); background: var(--quimica-bg); }
+.crono-slot.sq .crono-slot-materia { color: var(--quimica); }
+
+.crono-slot.sp .crono-slot-icon { background: var(--portugues-bg); }
+.crono-slot.sp .crono-aula-link { color: var(--portugues); background: var(--portugues-bg); }
+.crono-slot.sp .crono-slot-materia { color: var(--portugues); }
+
+.crono-slot.sm .crono-slot-icon { background: var(--matematica-bg); }
+.crono-slot.sm .crono-aula-link { color: var(--matematica); background: var(--matematica-bg); }
+.crono-slot.sm .crono-slot-materia { color: var(--matematica); }
+
+.crono-slot.sg .crono-slot-icon { background: var(--geo-bg); }
+.crono-slot.sg .crono-aula-link { color: var(--geo); background: var(--geo-bg); }
+.crono-slot.sg .crono-slot-materia { color: var(--geo); }
+
+.crono-slot.sh .crono-slot-icon { background: var(--historia-bg); }
+.crono-slot.sh .crono-aula-link { color: var(--historia); background: var(--historia-bg); }
+.crono-slot.sh .crono-slot-materia { color: var(--historia); }
+
+.crono-slot.sr { border-left: 3px solid var(--fuvest); }
+.crono-slot.sr .crono-slot-icon { background: var(--fuvest-bg); }
+.crono-slot.sr .crono-aula-link { color: var(--fuvest); background: var(--fuvest-bg); }
+.crono-slot.sr .crono-slot-materia { color: var(--fuvest); }
+
+/* CHECKLIST */
+.checklist-section { margin-top: 2.5rem; margin-bottom: 2rem; }
+
+.checklist-section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 540px) {
+  .week-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.day-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.day-card.today {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+
+.day-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.day-name {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.today-badge {
+  display: none;
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 2px 7px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+
+.day-card.today .today-badge { display: inline-block; }
+
+.day-progress { font-size: 10px; color: var(--ink-faint); }
+.day-card.today .day-progress { display: none; }
+
+.day-tasks {
+  padding: 10px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.task-check {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1.5px solid var(--ink-faint);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  background: transparent;
+}
+
+.task-item.done .task-check { background: var(--ink); border-color: var(--ink); }
+
+.task-check-svg { width: 9px; height: 9px; display: none; }
+.task-item.done .task-check-svg { display: block; }
+
+.task-label { font-size: 13px; color: var(--ink); line-height: 1.4; transition: all 0.15s; }
+.task-item.done .task-label { color: var(--ink-faint); text-decoration: line-through; }
+
+.task-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.task-dot.q { background: var(--quimica); }
+.task-dot.p { background: var(--portugues); }
+.task-dot.m { background: var(--matematica); }
+.task-dot.g { background: var(--geo); }
+.task-dot.h { background: var(--historia); }
+
+.reset-row { display: flex; justify-content: flex-end; margin-top: 10px; }
+
+.reset-btn {
+  font-size: 12px;
+  color: var(--ink-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+  font-family: 'Instrument Sans', sans-serif;
+}
+
+.reset-btn:hover { background: var(--rule); }
+
+/* LEITURAS OBRIGATÓRIAS */
+.leituras-section { margin-top: 2.5rem; margin-bottom: 2rem; }
+
+.leituras-title {
+  font-family: 'Fraunces', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.leituras-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--leitura);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+}
+
+.leituras-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.leituras-icon { font-size: 20px; }
+
+.leituras-heading {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--leitura);
+}
+
+.leituras-badge {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--leitura-pill);
+  color: var(--leitura);
+}
+
+.leituras-desc {
+  font-size: 13px;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.livro-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.livro-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 9px;
+  transition: background 0.15s;
+}
+
+.livro-item:hover { background: var(--leitura-bg); }
+
+.livro-num {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  width: 16px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.livro-titulo {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.livro-ano {
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-left: 2px;
+}
+
+.livro-autor {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .livro-autor { display: none; }
+}

@@ -1,0 +1,74 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F5F0E8;
+  --ink: #1C1A14;
+  --ink-muted: #6B6456;
+  --ink-faint: #B5AFA5;
+  --paper: #FDFAF4;
+  --rule: #E2DACE;
+
+  --quimica: #1D6E4E;
+  --quimica-bg: #E8F5EE;
+  --quimica-pill: #C2E8D4;
+
+  --portugues: #1A4A8A;
+  --portugues-bg: #E8EFF9;
+  --portugues-pill: #C2D5F0;
+
+  --matematica: #8A4D00;
+  --matematica-bg: #FDF3E3;
+  --matematica-pill: #F5DFB0;
+
+  --geo: #2D6B1A;
+  --geo-bg: #EBF5E6;
+  --geo-pill: #C8E8BE;
+
+  --historia: #7A2D00;
+  --historia-bg: #FDF0E8;
+  --historia-pill: #F5CDB0;
+
+  --fuvest: #4A1A7A;
+  --fuvest-bg: #F0EAF8;
+
+  --leitura: #8A3A00;
+  --leitura-bg: #FDF3E8;
+  --leitura-pill: #F5D5B0;
+}
+
+html { font-size: 16px; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Instrument Sans', sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 27px,
+    #D8D2C822 28px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
