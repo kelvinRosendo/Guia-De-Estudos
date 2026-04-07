@@ -6,929 +6,19 @@
 <title>💥 O Que Vai Fazer Você Passar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --cream: #F5F0E8;
-  --ink: #1C1A14;
-  --ink-muted: #6B6456;
-  --ink-faint: #B5AFA5;
-  --paper: #FDFAF4;
-  --rule: #E2DACE;
-
-  --quimica: #1D6E4E;
-  --quimica-bg: #E8F5EE;
-  --quimica-pill: #C2E8D4;
-
-  --portugues: #1A4A8A;
-  --portugues-bg: #E8EFF9;
-  --portugues-pill: #C2D5F0;
-
-  --matematica: #8A4D00;
-  --matematica-bg: #FDF3E3;
-  --matematica-pill: #F5DFB0;
-
-  --geo: #2D6B1A;
-  --geo-bg: #EBF5E6;
-  --geo-pill: #C8E8BE;
-
-  --historia: #7A2D00;
-  --historia-bg: #FDF0E8;
-  --historia-pill: #F5CDB0;
-
-  --fuvest: #4A1A7A;
-  --fuvest-bg: #F0EAF8;
-
-  --leitura: #8A3A00;
-  --leitura-bg: #FDF3E8;
-  --leitura-pill: #F5D5B0;
-}
-
-html { font-size: 16px; }
-
-body {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Instrument Sans', sans-serif;
-  min-height: 100vh;
-  line-height: 1.6;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 27px,
-    #D8D2C822 28px
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-
-.container {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 5rem;
-  position: relative;
-  z-index: 1;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* HERO */
-.hero {
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 2px solid var(--ink);
-  animation: fadeUp 0.5s ease both;
-}
-
-.hero-eyebrow {
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.hero-eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 20px;
-  height: 2px;
-  background: var(--ink-muted);
-}
-
-.hero-title {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2.2rem, 6vw, 3.6rem);
-  font-weight: 700;
-  line-height: 1.05;
-  color: var(--ink);
-  margin-bottom: 1.2rem;
-}
-
-.hero-title em {
-  font-style: italic;
-  font-weight: 400;
-}
-
-.hero-desc {
-  font-size: 15px;
-  color: var(--ink-muted);
-  max-width: 500px;
-  line-height: 1.7;
-}
-
-/* COUNTDOWN */
-.countdown-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 2.5rem;
-}
-
-@media (max-width: 480px) {
-  .countdown-row { grid-template-columns: 1fr; }
-}
-
-.countdown-card {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 14px;
-  padding: 16px 18px;
-  overflow: hidden;
-}
-
-.countdown-card.fuvest-cd { border-left: 3px solid var(--fuvest); }
-.countdown-card.enem-cd   { border-left: 3px solid #0F6E56; }
-
-.cd-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.cd-label-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-}
-
-.fuvest-cd .cd-label-dot { background: var(--fuvest); }
-.enem-cd   .cd-label-dot { background: #0F6E56; }
-
-.cd-units {
-  display: flex;
-  gap: 6px;
-  align-items: flex-end;
-}
-
-.cd-unit { text-align: center; }
-
-.cd-num {
-  font-family: 'Fraunces', serif;
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1;
-  display: block;
-  min-width: 36px;
-}
-
-.fuvest-cd .cd-num { color: var(--fuvest); }
-.enem-cd   .cd-num { color: #0F6E56; }
-
-.cd-unit-label {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  display: block;
-  margin-top: 3px;
-}
-
-.cd-sep {
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  color: var(--ink-faint);
-  line-height: 1;
-  padding-bottom: 14px;
-}
-
-.cd-date {
-  font-size: 11px;
-  color: var(--ink-faint);
-  margin-top: 10px;
-}
-
-/* COMO USAR */
-.como-usar {
-  background: var(--ink);
-  color: var(--cream);
-  border-radius: 16px;
-  padding: 1.75rem 2rem;
-  margin-bottom: 2.5rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  animation: fadeUp 0.5s 0.1s ease both;
-}
-
-@media (max-width: 540px) {
-  .como-usar { grid-template-columns: 1fr; }
-}
-
-.como-usar-title {
-  font-family: 'Fraunces', serif;
-  font-size: 13px;
-  font-weight: 400;
-  font-style: italic;
-  color: #B5AFA5;
-  margin-bottom: 1rem;
-  letter-spacing: 0.04em;
-  grid-column: 1 / -1;
-}
-
-.steps { display: flex; flex-direction: column; gap: 10px; }
-
-.step { display: flex; align-items: flex-start; gap: 12px; }
-
-.step-num {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #3A3830;
-  color: #F5F0E8;
-  font-size: 12px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.step-text { font-size: 14px; color: #E8E0D4; line-height: 1.5; }
-.step-text strong { color: #F5F0E8; font-weight: 500; }
-
-.dica-box {
-  background: #2A2820;
-  border-radius: 10px;
-  padding: 1rem 1.2rem;
-  border-left: 3px solid #8B7355;
-}
-
-.dica-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #8B7355;
-  margin-bottom: 8px;
-}
-
-.dica-text { font-size: 13.5px; color: #C8BFB0; line-height: 1.6; }
-.dica-text strong { color: #F5F0E8; }
-
-.dica-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 10px;
-  font-size: 12.5px;
-  color: #D4B896;
-  text-decoration: none;
-  border-bottom: 1px solid #8B735566;
-  padding-bottom: 1px;
-  transition: color 0.15s;
-}
-
-.dica-link:hover { color: #F5F0E8; }
-
-/* FUVEST BANNER */
-.fuvest-banner {
-  margin-top: 2rem;
-  background: var(--fuvest-bg);
-  border: 1px solid #C8A8E8;
-  border-radius: 14px;
-  padding: 1.5rem 1.75rem;
-  animation: fadeUp 0.5s 0.4s ease both;
-}
-
-.fuvest-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 0.75rem;
-}
-
-.fuvest-icon { font-size: 22px; }
-
-.fuvest-title {
-  font-family: 'Fraunces', serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--fuvest);
-}
-
-.fuvest-desc { font-size: 14px; color: #5A3A8A; line-height: 1.65; margin-bottom: 1rem; }
-.fuvest-desc strong { color: var(--fuvest); font-weight: 600; }
-
-.fuvest-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: var(--fuvest);
-  color: #F0EAF8;
-  font-size: 13.5px;
-  font-weight: 600;
-  padding: 10px 20px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: opacity 0.15s;
-}
-
-.fuvest-cta:hover { opacity: 0.85; }
-
-/* FOOTER */
-.footer {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rule);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.footer-text { font-size: 12px; color: var(--ink-faint); }
-
-.footer-tag {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-muted);
-  letter-spacing: 0.05em;
-}
-
-/* MATÉRIAS */
-.materias-title {
-  font-family: 'Fraunces', serif;
-  font-size: 13px;
-  font-style: italic;
-  color: var(--ink-muted);
-  margin-bottom: 1rem;
-  letter-spacing: 0.04em;
-}
-
-.materia-card {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 14px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  transition: box-shadow 0.2s;
-}
-
-.materia-card:hover { box-shadow: 0 2px 16px rgba(28,26,20,0.07); }
-
-.materia-card:nth-child(1) { animation: fadeUp 0.5s 0.15s ease both; }
-.materia-card:nth-child(2) { animation: fadeUp 0.5s 0.20s ease both; }
-.materia-card:nth-child(3) { animation: fadeUp 0.5s 0.25s ease both; }
-.materia-card:nth-child(4) { animation: fadeUp 0.5s 0.30s ease both; }
-.materia-card:nth-child(5) { animation: fadeUp 0.5s 0.35s ease both; }
-
-.materia-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.15s;
-}
-
-.materia-header:hover { background: var(--cream); }
-
-.m-icon {
-  font-size: 20px;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.m-info { flex: 1; }
-
-.m-name {
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--ink);
-  display: block;
-}
-
-.m-badge {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 500;
-  padding: 2px 9px;
-  border-radius: 20px;
-  margin-top: 3px;
-}
-
-.m-count { font-size: 12px; color: var(--ink-faint); white-space: nowrap; }
-
-.m-chevron {
-  width: 18px;
-  height: 18px;
-  color: var(--ink-faint);
-  transition: transform 0.25s ease;
-  flex-shrink: 0;
-}
-
-.materia-card.open .m-chevron { transform: rotate(180deg); }
-
-.materia-body {
-  display: none;
-  padding: 0 18px 16px;
-  border-top: 1px solid var(--rule);
-}
-
-.materia-card.open .materia-body { display: block; }
-
-.section-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  padding-top: 14px;
-}
-
-@media (max-width: 500px) {
-  .section-row { grid-template-columns: 1fr; }
-}
-
-.col-label {
-  font-size: 10.5px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-faint);
-  margin-bottom: 8px;
-}
-
-.link-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.link-list a {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 13px;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 5px 11px;
-  border-radius: 8px;
-  transition: all 0.15s;
-  border: 1px solid transparent;
-}
-
-.link-list a:hover { border-color: currentColor; opacity: 0.8; }
-.link-list a .arr { font-size: 11px; opacity: 0.6; }
-
-/* CORES POR MATÉRIA */
-.q .m-icon { background: var(--quimica-bg); }
-.q .m-badge { background: var(--quimica-pill); color: var(--quimica); }
-.q .link-list a { color: var(--quimica); background: var(--quimica-bg); }
-
-.p .m-icon { background: var(--portugues-bg); }
-.p .m-badge { background: var(--portugues-pill); color: var(--portugues); }
-.p .link-list a { color: var(--portugues); background: var(--portugues-bg); }
-
-.m .m-icon { background: var(--matematica-bg); }
-.m .m-badge { background: var(--matematica-pill); color: var(--matematica); }
-.m .link-list a { color: var(--matematica); background: var(--matematica-bg); }
-
-.g .m-icon { background: var(--geo-bg); }
-.g .m-badge { background: var(--geo-pill); color: var(--geo); }
-.g .link-list a { color: var(--geo); background: var(--geo-bg); }
-
-.h .m-icon { background: var(--historia-bg); }
-.h .m-badge { background: var(--historia-pill); color: var(--historia); }
-.h .link-list a { color: var(--historia); background: var(--historia-bg); }
-
-/* CRONOGRAMA */
-.cronograma-section { margin-top: 2.5rem; margin-bottom: 2rem; }
-
-.cronograma-title {
-  font-family: 'Fraunces', serif;
-  font-size: 13px;
-  font-style: italic;
-  color: var(--ink-muted);
-  margin-bottom: 1rem;
-  letter-spacing: 0.04em;
-}
-
-.cronograma-tabs {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-}
-
-.crono-tab {
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1.5px solid var(--rule);
-  background: var(--paper);
-  color: var(--ink-muted);
-  cursor: pointer;
-  transition: all 0.15s;
-  letter-spacing: 0.04em;
-}
-
-.crono-tab:hover { border-color: var(--ink-muted); color: var(--ink); }
-.crono-tab.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
-
-.crono-day { display: none; }
-.crono-day.active { display: flex; flex-direction: column; gap: 10px; }
-
-.crono-slot {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 14px;
-  overflow: hidden;
-}
-
-.crono-slot-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.crono-slot-icon {
-  font-size: 18px;
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.crono-slot-info { flex: 1; }
-
-.crono-slot-materia {
-  font-size: 14px;
-  font-weight: 600;
-  display: block;
-}
-
-.crono-slot-tipo {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-faint);
-  margin-top: 2px;
-  display: block;
-}
-
-.crono-slot-tempo {
-  font-size: 12px;
-  color: var(--ink-faint);
-  white-space: nowrap;
-  background: var(--cream);
-  border: 1px solid var(--rule);
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-
-.crono-slot-body {
-  padding: 12px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.crono-aula-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.crono-aula-num {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--ink-faint);
-  width: 18px;
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.crono-aula-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 13px;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 5px 11px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  transition: all 0.15s;
-  flex: 1;
-}
-
-.crono-aula-link:hover { border-color: currentColor; opacity: 0.8; }
-
-.crono-aula-link.placeholder {
-  opacity: 0.45;
-  cursor: default;
-  font-style: italic;
-}
-
-.crono-aula-link.placeholder:hover { border-color: transparent; opacity: 0.45; }
-.crono-aula-link .arr { font-size: 11px; opacity: 0.6; }
-
-/* cores crono */
-.crono-slot.sq .crono-slot-icon { background: var(--quimica-bg); }
-.crono-slot.sq .crono-aula-link { color: var(--quimica); background: var(--quimica-bg); }
-.crono-slot.sq .crono-slot-materia { color: var(--quimica); }
-
-.crono-slot.sp .crono-slot-icon { background: var(--portugues-bg); }
-.crono-slot.sp .crono-aula-link { color: var(--portugues); background: var(--portugues-bg); }
-.crono-slot.sp .crono-slot-materia { color: var(--portugues); }
-
-.crono-slot.sm .crono-slot-icon { background: var(--matematica-bg); }
-.crono-slot.sm .crono-aula-link { color: var(--matematica); background: var(--matematica-bg); }
-.crono-slot.sm .crono-slot-materia { color: var(--matematica); }
-
-.crono-slot.sg .crono-slot-icon { background: var(--geo-bg); }
-.crono-slot.sg .crono-aula-link { color: var(--geo); background: var(--geo-bg); }
-.crono-slot.sg .crono-slot-materia { color: var(--geo); }
-
-.crono-slot.sh .crono-slot-icon { background: var(--historia-bg); }
-.crono-slot.sh .crono-aula-link { color: var(--historia); background: var(--historia-bg); }
-.crono-slot.sh .crono-slot-materia { color: var(--historia); }
-
-.crono-slot.sr { border-left: 3px solid var(--fuvest); }
-.crono-slot.sr .crono-slot-icon { background: var(--fuvest-bg); }
-.crono-slot.sr .crono-aula-link { color: var(--fuvest); background: var(--fuvest-bg); }
-.crono-slot.sr .crono-slot-materia { color: var(--fuvest); }
-
-/* CHECKLIST */
-.checklist-section { margin-top: 2.5rem; margin-bottom: 2rem; }
-
-.checklist-section-title {
-  font-family: 'Fraunces', serif;
-  font-size: 13px;
-  font-style: italic;
-  color: var(--ink-muted);
-  margin-bottom: 1rem;
-  letter-spacing: 0.04em;
-}
-
-.week-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-@media (max-width: 540px) {
-  .week-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-.day-card {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.day-card.today {
-  border-color: var(--ink);
-  box-shadow: 0 0 0 2px var(--ink);
-}
-
-.day-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px 8px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.day-name {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-.today-badge {
-  display: none;
-  font-size: 10px;
-  font-weight: 600;
-  background: var(--ink);
-  color: var(--cream);
-  padding: 2px 7px;
-  border-radius: 20px;
-  letter-spacing: 0.05em;
-}
-
-.day-card.today .today-badge { display: inline-block; }
-
-.day-progress { font-size: 10px; color: var(--ink-faint); }
-.day-card.today .day-progress { display: none; }
-
-.day-tasks {
-  padding: 10px 14px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.task-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.task-check {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  border: 1.5px solid var(--ink-faint);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s;
-  background: transparent;
-}
-
-.task-item.done .task-check { background: var(--ink); border-color: var(--ink); }
-
-.task-check-svg { width: 9px; height: 9px; display: none; }
-.task-item.done .task-check-svg { display: block; }
-
-.task-label { font-size: 13px; color: var(--ink); line-height: 1.4; transition: all 0.15s; }
-.task-item.done .task-label { color: var(--ink-faint); text-decoration: line-through; }
-
-.task-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-.task-dot.q { background: var(--quimica); }
-.task-dot.p { background: var(--portugues); }
-.task-dot.m { background: var(--matematica); }
-.task-dot.g { background: var(--geo); }
-.task-dot.h { background: var(--historia); }
-
-.reset-row { display: flex; justify-content: flex-end; margin-top: 10px; }
-
-.reset-btn {
-  font-size: 12px;
-  color: var(--ink-muted);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: background 0.15s;
-  font-family: 'Instrument Sans', sans-serif;
-}
-
-.reset-btn:hover { background: var(--rule); }
-
-/* LEITURAS OBRIGATÓRIAS */
-.leituras-section { margin-top: 2.5rem; margin-bottom: 2rem; }
-
-.leituras-title {
-  font-family: 'Fraunces', serif;
-  font-size: 13px;
-  font-style: italic;
-  color: var(--ink-muted);
-  margin-bottom: 1rem;
-  letter-spacing: 0.04em;
-}
-
-.leituras-card {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--leitura);
-  border-radius: 14px;
-  padding: 1.25rem 1.5rem;
-}
-
-.leituras-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.leituras-icon { font-size: 20px; }
-
-.leituras-heading {
-  font-family: 'Fraunces', serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--leitura);
-}
-
-.leituras-badge {
-  margin-left: auto;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 20px;
-  background: var(--leitura-pill);
-  color: var(--leitura);
-}
-
-.leituras-desc {
-  font-size: 13px;
-  color: var(--ink-muted);
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-.livro-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.livro-item {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 7px 10px;
-  border-radius: 9px;
-  transition: background 0.15s;
-}
-
-.livro-item:hover { background: var(--leitura-bg); }
-
-.livro-num {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--ink-faint);
-  width: 16px;
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.livro-titulo {
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.livro-ano {
-  font-size: 11px;
-  color: var(--ink-faint);
-  margin-left: 2px;
-}
-
-.livro-autor {
-  font-size: 12.5px;
-  color: var(--ink-muted);
-  margin-left: auto;
-  white-space: nowrap;
-}
-
-@media (max-width: 560px) {
-  .livro-autor { display: none; }
-}
-
-</style>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 <div class="container">
 
+  <!-- HERO -->
   <header class="hero">
-    <p class="hero-eyebrow">Guia de estudos · FUVEST</p>
+    <p class="hero-eyebrow">Guia de estudos · FUVEST 2026</p>
     <h1 class="hero-title">💥 O que vai fazer<br><em>você passar</em></h1>
-    <p class="hero-desc">Se você seguir isso certinho, você entra em outro nível. Química deixa de ser buraco negro. Português vira padrão. Matemática vira automático. Você começa a reconhecer a FUVEST.</p>
+    <p class="hero-desc">Abre, vê o que tem pra fazer hoje, executa. Sem enrolação. Química, Português, Matemática — tudo no plano, tudo com link, tudo com tempo definido.</p>
   </header>
 
+  <!-- COUNTDOWN -->
   <div class="countdown-row">
     <div class="countdown-card fuvest-cd">
       <div class="cd-label"><span class="cd-label-dot"></span> FUVEST 2026</div>
@@ -958,20 +48,23 @@ body::before {
     </div>
   </div>
 
+  <!-- COMO USAR -->
   <div class="como-usar">
-    <p class="como-usar-title">— como usar cada matéria</p>
+    <p class="como-usar-title">— o método. simples assim.</p>
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Assiste a aula</strong> — 20 minutos, focado, sem celular no lado</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Faz questão</strong> — 20 minutos logo depois, sem consultar</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Errou?</strong> → volta na aula, anota o padrão do erro</div></div>
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Assiste a aula</strong> — 20 min, focado, sem celular do lado</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Faz questões</strong> — 20 min logo depois, sem consultar</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Errou?</strong> Volta na aula, anota o padrão do erro</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Sábado:</strong> revisão + lista pesada. <strong>Domingo:</strong> simulado completo</div></div>
     </div>
     <div class="dica-box">
       <p class="dica-label">⚠ dica que muda o jogo</p>
-      <p class="dica-text">FUVEST não é sobre <strong>saber tudo</strong> — é sobre <strong>reconhecer padrão de questão</strong>.<br><br>Por isso: faça muito as provas antigas. Você vai ver que os mesmos temas se repetem com variações previsíveis.</p>
-      <a class="dica-link" href="https://acervo.fuvest.br/" target="_blank">→ Acessar provas antigas da FUVEST</a>
+      <p class="dica-text">FUVEST não é sobre <strong>saber tudo</strong> — é sobre <strong>reconhecer padrão de questão</strong>.<br><br>Resolva provas antigas. Você vai ver os mesmos temas se repetindo. Quando isso acontecer, você está no nível certo.</p>
+      <a class="dica-link" href="https://acervo.fuvest.br/" target="_blank">→ Acessar acervo FUVEST</a>
     </div>
   </div>
 
+  <!-- MATÉRIAS -->
   <p class="materias-title">— clique na matéria para ver os links</p>
   <div class="materias-list">
 
@@ -979,7 +72,7 @@ body::before {
       <div class="materia-header">
         <div class="m-icon">🧪</div>
         <div class="m-info"><span class="m-name">Química</span><span class="m-badge">Prioridade máxima</span></div>
-        <span class="m-count">6 links</span>
+        <span class="m-count">5 links</span>
         <svg class="m-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="materia-body">
@@ -997,7 +90,6 @@ body::before {
             <ul class="link-list">
               <li><a href="https://app.estuda.com/questoes_categorias/?onboarding=questoes" target="_blank"><span class="arr">↗</span> Estuda.com</a></li>
               <li><a href="https://www.qconcursos.com/questoes-de-vestibular/disciplinas/quimica" target="_blank"><span class="arr">↗</span> Qconcursos</a></li>
-              <li><a href="https://acervo.fuvest.br/" target="_blank"><span class="arr">↗</span> Acervo FUVEST</a></li>
             </ul>
           </div>
         </div>
@@ -1008,7 +100,7 @@ body::before {
       <div class="materia-header">
         <div class="m-icon">📖</div>
         <div class="m-info"><span class="m-name">Português</span><span class="m-badge">Prioridade alta</span></div>
-        <span class="m-count">6 links</span>
+        <span class="m-count">5 links</span>
         <svg class="m-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="materia-body">
@@ -1026,7 +118,6 @@ body::before {
             <ul class="link-list">
               <li><a href="https://app.estuda.com/questoes_categorias/?onboarding=questoes" target="_blank"><span class="arr">↗</span> Estuda.com</a></li>
               <li><a href="https://www.qconcursos.com/questoes-de-vestibular/disciplinas/letras-portugues" target="_blank"><span class="arr">↗</span> Qconcursos</a></li>
-              <li><a href="https://acervo.fuvest.br/" target="_blank"><span class="arr">↗</span> Acervo FUVEST</a></li>
             </ul>
           </div>
         </div>
@@ -1037,7 +128,7 @@ body::before {
       <div class="materia-header">
         <div class="m-icon">📐</div>
         <div class="m-info"><span class="m-name">Matemática</span><span class="m-badge">Manutenção + prova</span></div>
-        <span class="m-count">6 links</span>
+        <span class="m-count">5 links</span>
         <svg class="m-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="materia-body">
@@ -1055,7 +146,6 @@ body::before {
             <ul class="link-list">
               <li><a href="https://app.estuda.com/questoes_categorias/?onboarding=questoes" target="_blank"><span class="arr">↗</span> Estuda.com</a></li>
               <li><a href="https://www.qconcursos.com/questoes-de-vestibular/disciplinas/matematica" target="_blank"><span class="arr">↗</span> Qconcursos</a></li>
-              <li><a href="https://acervo.fuvest.br/" target="_blank"><span class="arr">↗</span> Acervo FUVEST</a></li>
             </ul>
           </div>
         </div>
@@ -1118,20 +208,28 @@ body::before {
 
   </div>
 
+  <!-- CRONOGRAMA -->
   <div class="cronograma-section">
-    <p class="cronograma-title">— cronograma de aulas · progressão por dia</p>
+    <p class="cronograma-title">— cronograma · semana a semana</p>
+    <div class="semana-nav">
+      <span class="semana-label">Semana</span>
+      <select class="semana-select" id="semanaSelect" onchange="renderSemana(this.value)"></select>
+      <span class="semana-atual-badge" id="semanaAtualBadge" style="display:none">semana atual</span>
+    </div>
     <div class="cronograma-tabs" id="cronoTabs"></div>
     <div id="cronoDays"></div>
   </div>
 
+  <!-- CHECKLIST -->
   <div class="checklist-section">
-    <p class="checklist-section-title">— checklist diária · seg a sáb</p>
-    <div class="week-grid" id="weekGrid"></div>
-    <div class="reset-row">
-      <button class="reset-btn" onclick="resetAll()">↺ resetar semana</button>
+    <p class="checklist-section-title">— checklist do dia · marque conforme executa</p>
+    <div id="checklistContainer"></div>
+    <div style="display:flex;justify-content:flex-end;margin-top:10px">
+      <button class="reset-btn" onclick="resetChecklist()">↺ resetar dia</button>
     </div>
   </div>
 
+  <!-- LEITURAS -->
   <div class="leituras-section">
     <p class="leituras-title">— leituras obrigatórias · vestibular 2027</p>
     <div class="leituras-card">
@@ -1140,20 +238,22 @@ body::before {
         <h2 class="leituras-heading">Leituras Obrigatórias</h2>
         <span class="leituras-badge">9 livros</span>
       </div>
-      <p class="leituras-desc">Além do conteúdo programático, há nove livros de leitura obrigatória no vestibular 2027. Conhecer bem as obras é ponto certo na prova de redação e interpretação.</p>
+      <p class="leituras-desc">Além do conteúdo programático, há nove livros de leitura obrigatória no vestibular 2027. Conhecer bem as obras garante ponto na redação e interpretação.</p>
       <ul class="livro-list" id="livroList"></ul>
     </div>
   </div>
 
+  <!-- FUVEST BANNER -->
   <div class="fuvest-banner">
     <div class="fuvest-header">
       <span class="fuvest-icon">🎯</span>
-      <h2 class="fuvest-title">Banco de Provas FUVEST</h2>
+      <h2 class="fuvest-title">Acervo de Provas FUVEST</h2>
     </div>
-    <p class="fuvest-desc">Essa é a arma principal. Faça questão de <strong>resolver provas antigas de anos diferentes</strong> — você vai começar a ver os mesmos padrões se repetindo. Quando isso acontecer, você sabe que está no nível certo.</p>
+    <p class="fuvest-desc">Essa é a arma principal. <strong>Resolva provas antigas de anos diferentes</strong> — você vai começar a ver os mesmos padrões se repetindo. Quando isso acontecer, você sabe que está no nível certo.</p>
     <a class="fuvest-cta" href="https://acervo.fuvest.br/" target="_blank">Acessar acervo oficial →</a>
   </div>
 
+  <!-- FOOTER -->
   <div class="footer">
     <span class="footer-text">Feito pra quem vai passar de verdade.</span>
     <span class="footer-tag">FUVEST · 2026</span>
@@ -1161,383 +261,9 @@ body::before {
 
 </div>
 
-<script>
-const FUVEST_DATE = new Date('2026-11-08T08:00:00');
-const ENEM_DATE   = new Date('2026-11-01T08:00:00');
-
-const LINKS = {
-  quimica: {
-    videos: [
-      { label: 'Química do Monstro', url: 'https://www.youtube.com/@quimicadomonstro/videos' },
-      { label: 'Professor Michel',   url: 'https://www.youtube.com/@ProfessorMichel/videos' },
-      { label: 'Me Salva',           url: 'https://www.youtube.com/@MeSalva/videos' },
-    ],
-    questoes: [
-      { label: 'Estuda.com',   url: 'https://app.estuda.com/questoes_categorias/?onboarding=questoes' },
-      { label: 'Qconcursos',  url: 'https://www.qconcursos.com/questoes-de-vestibular/disciplinas/quimica' },
-      { label: 'Provas FUVEST', url: 'https://acervo.fuvest.br/' },
-    ],
-  },
-  portugues: {
-    videos: [
-      { label: 'Noslen',                url: 'https://www.youtube.com/@noslen/videos' },
-      { label: 'Português c/ Letícia', url: 'https://www.youtube.com/@portuguescomleticia/videos' },
-      { label: 'Me Salva',              url: 'https://www.youtube.com/@MeSalva/videos' },
-    ],
-    questoes: [
-      { label: 'Estuda.com',  url: 'https://app.estuda.com/questoes_categorias/?onboarding=questoes' },
-      { label: 'Qconcursos', url: 'https://www.qconcursos.com/questoes-de-vestibular/disciplinas/letras-portugues' },
-      { label: 'Provas FUVEST', url: 'https://acervo.fuvest.br/' },
-    ],
-  },
-  matematica: {
-    videos: [
-      { label: 'Professor Ferretto',       url: 'https://www.youtube.com/@professorferretto/videos' },
-      { label: 'Matemática em Exercícios', url: 'https://www.youtube.com/@matematicaemexercicios/videos' },
-      { label: 'Me Salva',                 url: 'https://www.youtube.com/@MeSalva/videos' },
-    ],
-    questoes: [
-      { label: 'Estuda.com',  url: 'https://app.estuda.com/questoes_categorias/?onboarding=questoes' },
-      { label: 'Qconcursos', url: 'https://www.qconcursos.com/questoes-de-vestibular/disciplinas/matematica' },
-      { label: 'Provas FUVEST', url: 'https://acervo.fuvest.br/' },
-    ],
-  },
-  historia: {
-    videos: [
-      { label: 'Parabólica',           url: 'https://www.youtube.com/@parabolica/videos' },
-      { label: 'Se Liga Nessa História', url: 'https://www.youtube.com/@SeLigaNessaHistoria/videos' },
-    ],
-    questoes: [
-      { label: 'Estuda.com',  url: 'https://app.estuda.com/questoes_categorias/?onboarding=questoes' },
-      { label: 'Qconcursos', url: 'https://www.qconcursos.com/questoes-de-vestibular/disciplinas/historia' },
-    ],
-  },
-  geografia: {
-    videos: [
-      { label: 'Geo Brasil',  url: 'https://www.youtube.com/@geobrasil/videos' },
-      { label: 'Parabólica', url: 'https://www.youtube.com/@parabolica/videos' },
-    ],
-    questoes: [
-      { label: 'Estuda.com',  url: 'https://app.estuda.com/questoes_categorias/?onboarding=questoes' },
-      { label: 'Qconcursos', url: 'https://www.qconcursos.com/questoes-de-vestibular/disciplinas/geografia' },
-    ],
-  },
-  fuvest: {
-    provas: [
-      { label: 'Acervo FUVEST (oficial)', url: 'https://acervo.fuvest.br/' },
-    ],
-  },
-};
-
-const SCHEDULE = [
-  { day: 'Segunda', tasks: [
-    { label: 'Química · videoaula',    dot: 'q' },
-    { label: 'Química · questões',     dot: 'q' },
-    { label: 'Matemática · questões',  dot: 'm' },
-  ]},
-  { day: 'Terça', tasks: [
-    { label: 'Química · videoaula',    dot: 'q' },
-    { label: 'Português · videoaula',  dot: 'p' },
-    { label: 'Português · questões',   dot: 'p' },
-  ]},
-  { day: 'Quarta', tasks: [
-    { label: 'Química · questões',     dot: 'q' },
-    { label: 'Matemática · videoaula', dot: 'm' },
-    { label: 'Matemática · questões',  dot: 'm' },
-  ]},
-  { day: 'Quinta', tasks: [
-    { label: 'Química · videoaula',    dot: 'q' },
-    { label: 'Português · questões',   dot: 'p' },
-    { label: 'História · videoaula',   dot: 'h' },
-  ]},
-  { day: 'Sexta', tasks: [
-    { label: 'Química · questões',     dot: 'q' },
-    { label: 'Matemática · questões',  dot: 'm' },
-    { label: 'Geografia · videoaula',  dot: 'g' },
-  ]},
-  { day: 'Sábado', tasks: [
-    { label: 'Revisão FUVEST · provas antigas',  dot: 'q' },
-    { label: 'Português · interpretação',        dot: 'p' },
-    { label: 'História + Geo · questões',        dot: 'h' },
-  ]},
-];
-
-const CRONOGRAMA = [
-  { id: 'seg', label: 'Segunda', slots: [
-    { cls: 'sq', icon: '🧪', materia: 'Química',    tipo: 'Videoaula',  tempo: '~20 min',
-      aulas: [{ num: 'A1', label: 'Aula 1 · adicionar link', url: null }] },
-    { cls: 'sq', icon: '🧪', materia: 'Química',    tipo: 'Questões',   tempo: '~20 min',
-      aulas: [{ num: 'Q1', label: 'Questões de Química · Estuda.com', url: LINKS.quimica.questoes[0].url }] },
-    { cls: 'sm', icon: '📐', materia: 'Matemática', tipo: 'Questões',   tempo: '~20 min',
-      aulas: [{ num: 'Q1', label: 'Questões de Matemática · Estuda.com', url: LINKS.matematica.questoes[0].url }] },
-  ]},
-  { id: 'ter', label: 'Terça', slots: [
-    { cls: 'sq', icon: '🧪', materia: 'Química',   tipo: 'Videoaula', tempo: '~20 min',
-      aulas: [{ num: 'A2', label: 'Aula 2 · adicionar link', url: null }] },
-    { cls: 'sp', icon: '📖', materia: 'Português', tipo: 'Videoaula', tempo: '~20 min',
-      aulas: [{ num: 'A1', label: 'Aula 1 · adicionar link', url: null }] },
-    { cls: 'sp', icon: '📖', materia: 'Português', tipo: 'Questões',  tempo: '~20 min',
-      aulas: [{ num: 'Q1', label: 'Questões de Português · Qconcursos', url: LINKS.portugues.questoes[1].url }] },
-  ]},
-  { id: 'qua', label: 'Quarta', slots: [
-    { cls: 'sq', icon: '🧪', materia: 'Química',    tipo: 'Questões',   tempo: '~20 min',
-      aulas: [{ num: 'Q2', label: 'Questões de Química · Qconcursos', url: LINKS.quimica.questoes[1].url }] },
-    { cls: 'sm', icon: '📐', materia: 'Matemática', tipo: 'Videoaula',  tempo: '~20 min',
-      aulas: [{ num: 'A1', label: 'Aula 1 · adicionar link', url: null }] },
-    { cls: 'sm', icon: '📐', materia: 'Matemática', tipo: 'Questões',   tempo: '~20 min',
-      aulas: [{ num: 'Q2', label: 'Questões de Matemática · Qconcursos', url: LINKS.matematica.questoes[1].url }] },
-  ]},
-  { id: 'qui', label: 'Quinta', slots: [
-    { cls: 'sq', icon: '🧪', materia: 'Química',   tipo: 'Videoaula', tempo: '~20 min',
-      aulas: [{ num: 'A3', label: 'Aula 3 · adicionar link', url: null }] },
-    { cls: 'sp', icon: '📖', materia: 'Português', tipo: 'Questões',  tempo: '~20 min',
-      aulas: [{ num: 'Q2', label: 'Questões de Português · Estuda.com', url: LINKS.portugues.questoes[0].url }] },
-    { cls: 'sh', icon: '🏛️', materia: 'História',  tipo: 'Videoaula', tempo: '~20 min',
-      aulas: [{ num: 'A1', label: 'Aula 1 · adicionar link', url: null }] },
-  ]},
-  { id: 'sex', label: 'Sexta', slots: [
-    { cls: 'sq', icon: '🧪', materia: 'Química',    tipo: 'Questões',  tempo: '~20 min',
-      aulas: [{ num: 'Q3', label: 'Provas FUVEST · Química', url: LINKS.fuvest.provas[0].url }] },
-    { cls: 'sm', icon: '📐', materia: 'Matemática', tipo: 'Questões',  tempo: '~20 min',
-      aulas: [{ num: 'Q3', label: 'Provas FUVEST · Matemática', url: LINKS.fuvest.provas[0].url }] },
-    { cls: 'sg', icon: '🌎', materia: 'Geografia',  tipo: 'Videoaula', tempo: '~20 min',
-      aulas: [{ num: 'A1', label: 'Aula 1 · adicionar link', url: null }] },
-  ]},
-  { id: 'sab', label: 'Sábado', slots: [
-    { cls: 'sr', icon: '🎯', materia: 'Revisão FUVEST', tipo: 'Provas antigas',        tempo: '~40 min',
-      aulas: [{ num: 'P1', label: 'Acervo FUVEST (oficial)', url: LINKS.fuvest.provas[0].url }] },
-    { cls: 'sp', icon: '📖', materia: 'Português',       tipo: 'Interpretação de texto', tempo: '~20 min',
-      aulas: [{ num: 'Q3', label: 'Interpretação de texto · Estuda.com', url: LINKS.portugues.questoes[0].url }] },
-    { cls: 'sh', icon: '🏛️', materia: 'História + Geografia', tipo: 'Questões',        tempo: '~20 min',
-      aulas: [
-        { num: 'Q1', label: 'Questões de História · Qconcursos',  url: LINKS.historia.questoes[1].url },
-        { num: 'Q1', label: 'Questões de Geografia · Qconcursos', url: LINKS.geografia.questoes[1].url },
-      ]},
-  ]},
-];
-
-const LEITURAS = [
-  { titulo: 'Opúsculo Humanitário',          ano: '1853', autor: 'Nísia Floresta' },
-  { titulo: 'Nebulosas',                      ano: '1872', autor: 'Narcisa Amália' },
-  { titulo: 'Memórias de Martha',             ano: '1899', autor: 'Julia Lopes de Almeida' },
-  { titulo: 'Caminho de pedras',              ano: '1937', autor: 'Rachel de Queiroz' },
-  { titulo: 'A paixão segundo G. H.',         ano: '1964', autor: 'Clarice Lispector' },
-  { titulo: 'Geografia',                      ano: '1967', autor: 'Sophia de Mello Breyner Andresen' },
-  { titulo: 'Balada de amor ao vento',        ano: '1990', autor: 'Paulina Chiziane' },
-  { titulo: 'Canção para ninar menino grande', ano: '2018', autor: 'Conceição Evaristo' },
-  { titulo: 'A visão das plantas',            ano: '2019', autor: 'Djaimilia Pereira de Almeida' },
-];
-
-function pad(n) { return String(n).padStart(2, '0'); }
-
-function updateCountdown(targetDate, ids) {
-  const diff = targetDate - new Date();
-  if (diff <= 0) {
-    ids.forEach(id => document.getElementById(id).textContent = '00');
-    return;
-  }
-  const days  = Math.floor(diff / 864e5);
-  const hours = Math.floor((diff % 864e5) / 36e5);
-  const mins  = Math.floor((diff % 36e5)  / 6e4);
-  const secs  = Math.floor((diff % 6e4)   / 1e3);
-  const [dEl, hEl, mEl, sEl] = ids.map(id => document.getElementById(id));
-  dEl.textContent = days;
-  hEl.textContent = pad(hours);
-  mEl.textContent = pad(mins);
-  sEl.textContent = pad(secs);
-}
-
-function tickCountdowns() {
-  updateCountdown(FUVEST_DATE, ['fv-days','fv-hours','fv-mins','fv-secs']);
-  updateCountdown(ENEM_DATE,   ['en-days','en-hours','en-mins','en-secs']);
-}
-
-tickCountdowns();
-setInterval(tickCountdowns, 1000);
-
-// ---------- CRONOGRAMA ----------
-
-function buildCronograma() {
-  const tabsEl = document.getElementById('cronoTabs');
-  const daysEl = document.getElementById('cronoDays');
-
-  CRONOGRAMA.forEach((day, i) => {
-    // tab
-    const btn = document.createElement('button');
-    btn.className = 'crono-tab' + (i === 0 ? ' active' : '');
-    btn.textContent = day.label;
-    btn.dataset.id = day.id;
-    btn.addEventListener('click', () => switchDay(day.id));
-    tabsEl.appendChild(btn);
-
-    // day panel
-    const panel = document.createElement('div');
-    panel.className = 'crono-day' + (i === 0 ? ' active' : '');
-    panel.id = 'crono-' + day.id;
-
-    day.slots.forEach(slot => {
-      const slotEl = document.createElement('div');
-      slotEl.className = 'crono-slot ' + slot.cls;
-
-      const aulaItems = slot.aulas.map(a => {
-        const isPlaceholder = !a.url;
-        return `
-          <div class="crono-aula-item">
-            <span class="crono-aula-num">${a.num}</span>
-            <a href="${a.url || '#'}"
-               class="crono-aula-link${isPlaceholder ? ' placeholder' : ''}"
-               ${!isPlaceholder ? 'target="_blank"' : ''}
-            >
-              <span class="arr">↗</span> ${a.label}
-            </a>
-          </div>`;
-      }).join('');
-
-      slotEl.innerHTML = `
-        <div class="crono-slot-header">
-          <div class="crono-slot-icon">${slot.icon}</div>
-          <div class="crono-slot-info">
-            <span class="crono-slot-materia">${slot.materia}</span>
-            <span class="crono-slot-tipo">${slot.tipo}</span>
-          </div>
-          <span class="crono-slot-tempo">${slot.tempo}</span>
-        </div>
-        <div class="crono-slot-body">${aulaItems}</div>
-      `;
-      panel.appendChild(slotEl);
-    });
-
-    daysEl.appendChild(panel);
-  });
-
-  // abre o dia atual automaticamente
-  const DAY_MAP = ['sab', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab'];
-  const todayKey = DAY_MAP[new Date().getDay()];
-  switchDay(todayKey);
-}
-
-function switchDay(id) {
-  document.querySelectorAll('.crono-day').forEach(d => d.classList.remove('active'));
-  document.querySelectorAll('.crono-tab').forEach(b => b.classList.remove('active'));
-  const panel = document.getElementById('crono-' + id);
-  const btn   = document.querySelector(`.crono-tab[data-id="${id}"]`);
-  if (panel) panel.classList.add('active');
-  if (btn)   btn.classList.add('active');
-}
-
-// ---------- LEITURAS ----------
-
-function buildLeituras() {
-  const list = document.getElementById('livroList');
-  LEITURAS.forEach((livro, i) => {
-    const li = document.createElement('li');
-    li.className = 'livro-item';
-    li.innerHTML = `
-      <span class="livro-num">${String(i + 1).padStart(2, '0')}</span>
-      <span class="livro-titulo">${livro.titulo} <span class="livro-ano">(${livro.ano})</span></span>
-      <span class="livro-autor">${livro.autor}</span>
-    `;
-    list.appendChild(li);
-  });
-}
-
-// ---------- MATÉRIAS (toggle) ----------
-
-function toggle(card) {
-  const isOpen = card.classList.contains('open');
-  document.querySelectorAll('.materia-card.open').forEach(c => c.classList.remove('open'));
-  if (!isOpen) card.classList.add('open');
-}
-
-// ---------- INIT ----------
-
-buildCronograma();
-buildLeituras();
-
-const STORAGE_KEY = 'fuvest-checklist-v1';
-const DATE_KEY    = 'fuvest-checklist-date';
-
-function getTodayDow() {
-  const d = new Date().getDay();
-  return d === 0 ? -1 : d - 1;
-}
-
-function loadState() {
-  const savedDate = localStorage.getItem(DATE_KEY);
-  const today = new Date().toDateString();
-  if (savedDate !== today) {
-    localStorage.setItem(DATE_KEY, today);
-    localStorage.removeItem(STORAGE_KEY);
-    return {};
-  }
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
-}
-
-function saveState(state) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-
-function renderWeek() {
-  const grid = document.getElementById('weekGrid');
-  grid.innerHTML = '';
-  const state = loadState();
-  const todayDow = getTodayDow();
-
-  SCHEDULE.forEach((dayObj, di) => {
-    const isToday = di === todayDow;
-    const total = dayObj.tasks.length;
-    const done  = dayObj.tasks.filter((_, ti) => state[`${di}-${ti}`]).length;
-
-    const card = document.createElement('div');
-    card.className = 'day-card' + (isToday ? ' today' : '');
-
-    const header = document.createElement('div');
-    header.className = 'day-header';
-    header.innerHTML = `
-      <span class="day-name">${dayObj.day}</span>
-      <span class="today-badge">hoje</span>
-      <span class="day-progress">${done}/${total}</span>
-    `;
-    card.appendChild(header);
-
-    const tasksDiv = document.createElement('div');
-    tasksDiv.className = 'day-tasks';
-
-    dayObj.tasks.forEach((task, ti) => {
-      const isDone = !!state[`${di}-${ti}`];
-      const item = document.createElement('div');
-      item.className = 'task-item' + (isDone ? ' done' : '');
-      item.innerHTML = `
-        <div class="task-check">
-          <svg class="task-check-svg" viewBox="0 0 10 8" fill="none">
-            <polyline points="1,4 3.5,6.5 9,1" stroke="#F5F0E8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="task-dot ${task.dot}"></div>
-        <span class="task-label">${task.label}</span>
-      `;
-      item.addEventListener('click', () => {
-        const s = loadState();
-        const key = `${di}-${ti}`;
-        s[key] = !s[key];
-        saveState(s);
-        renderWeek();
-      });
-      tasksDiv.appendChild(item);
-    });
-
-    card.appendChild(tasksDiv);
-    grid.appendChild(card);
-  });
-}
-
-function resetAll() {
-  localStorage.removeItem(STORAGE_KEY);
-  renderWeek();
-}
-
-renderWeek();
-
-</script>
+<script src="data/schedule.js"></script>
+<script src="assets/js/countdown.js"></script>
+<script src="assets/js/checklist.js"></script>
+<script src="assets/js/cronograma.js"></script>
 </body>
 </html>

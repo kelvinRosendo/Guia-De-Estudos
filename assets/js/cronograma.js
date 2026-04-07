@@ -1,98 +1,155 @@
-// ---------- CRONOGRAMA ----------
+// ─── CRONOGRAMA ──────────────────────────────────────────────────────
+let semanaAtiva = null;
+let diaAtivo    = null;
 
-function buildCronograma() {
+function renderSemana(numSemana) {
+  const semana = SEMANAS.find(s => s.num == numSemana);
+  if (!semana) return;
+  semanaAtiva = semana;
+
+  const atualNum = getSemanaAtual();
+  document.getElementById('semanaAtualBadge').style.display = (semana.num === atualNum) ? 'inline-block' : 'none';
+
+  // Tabs de dias
   const tabsEl = document.getElementById('cronoTabs');
-  const daysEl = document.getElementById('cronoDays');
-
-  CRONOGRAMA.forEach((day, i) => {
-    // tab
+  tabsEl.innerHTML = '';
+  semana.dias.forEach(dia => {
     const btn = document.createElement('button');
-    btn.className = 'crono-tab' + (i === 0 ? ' active' : '');
-    btn.textContent = day.label;
-    btn.dataset.id = day.id;
-    btn.addEventListener('click', () => switchDay(day.id));
+    btn.className = 'crono-tab';
+    btn.textContent = dia.label;
+    btn.dataset.id = dia.id;
+    btn.addEventListener('click', () => renderDia(semana, dia.id));
     tabsEl.appendChild(btn);
+  });
 
-    // day panel
-    const panel = document.createElement('div');
-    panel.className = 'crono-day' + (i === 0 ? ' active' : '');
-    panel.id = 'crono-' + day.id;
+  // Determina dia a abrir
+  const diaHoje = getDiaSemana();
+  const diaExiste = semana.dias.find(d => d.id === diaHoje);
+  const diaParaAbrir = semana.num === atualNum && diaExiste ? diaHoje : semana.dias[0].id;
+  renderDia(semana, diaParaAbrir);
+}
 
-    day.slots.forEach(slot => {
-      const slotEl = document.createElement('div');
-      slotEl.className = 'crono-slot ' + slot.cls;
+function renderDia(semana, diaId) {
+  diaAtivo = diaId;
+  document.querySelectorAll('.crono-tab').forEach(b => {
+    b.classList.toggle('active', b.dataset.id === diaId);
+  });
 
-      const aulaItems = slot.aulas.map(a => {
-        const isPlaceholder = !a.url;
-        return `
-          <div class="crono-aula-item">
-            <span class="crono-aula-num">${a.num}</span>
-            <a href="${a.url || '#'}"
-               class="crono-aula-link${isPlaceholder ? ' placeholder' : ''}"
-               ${!isPlaceholder ? 'target="_blank"' : ''}
-            >
-              <span class="arr">↗</span> ${a.label}
-            </a>
-          </div>`;
-      }).join('');
+  const dia = semana.dias.find(d => d.id === diaId);
+  const daysEl = document.getElementById('cronoDays');
+  daysEl.innerHTML = '';
 
-      slotEl.innerHTML = `
-        <div class="crono-slot-header">
-          <div class="crono-slot-icon">${slot.icon}</div>
-          <div class="crono-slot-info">
-            <span class="crono-slot-materia">${slot.materia}</span>
-            <span class="crono-slot-tipo">${slot.tipo}</span>
-          </div>
-          <span class="crono-slot-tempo">${slot.tempo}</span>
+  const panel = document.createElement('div');
+  panel.className = 'crono-day active';
+
+  dia.slots.forEach(slot => {
+    const slotEl = document.createElement('div');
+    slotEl.className = 'crono-slot ' + slot.cls;
+
+    const questoesInfo = slot.questoes > 0 ? ` · ${slot.questoes} questões` : '';
+
+    const aulaItems = slot.aulas.map(a => {
+      const isPH = !a.url;
+      return `<div class="crono-aula-item">
+        <span class="crono-aula-num">${a.num}</span>
+        <a href="${a.url || '#'}" class="crono-aula-link${isPH?' placeholder':''}" ${!isPH?'target="_blank"':''}>
+          <span class="arr">↗</span> ${a.label}
+        </a>
+      </div>`;
+    }).join('');
+
+    slotEl.innerHTML = `
+      <div class="crono-slot-header">
+        <div class="crono-slot-icon">${slot.icon}</div>
+        <div class="crono-slot-info">
+          <span class="crono-slot-materia">${slot.materia}</span>
+          <span class="crono-slot-tipo">${slot.tipo}${questoesInfo}</span>
         </div>
-        <div class="crono-slot-body">${aulaItems}</div>
-      `;
-      panel.appendChild(slotEl);
+        <span class="crono-slot-tempo">${slot.tempo}</span>
+      </div>
+      <div class="crono-tema">
+        <span class="crono-tema-label">Tema</span>
+        ${slot.tema}
+      </div>
+      <div class="crono-slot-body">${aulaItems}</div>`;
+    panel.appendChild(slotEl);
+  });
+
+  daysEl.appendChild(panel);
+  renderChecklist(semana, dia);
+}
+
+// ─── CHECKLIST ───────────────────────────────────────────────────────
+const CL_KEY   = 'fuvest-cl-v2';
+const CL_DATE  = 'fuvest-cl-date';
+
+function loadCL() {
+  const saved = localStorage.getItem(CL_DATE);
+  const today = new Date().toDateString();
+  if (saved !== today) { localStorage.setItem(CL_DATE, today); localStorage.removeItem(CL_KEY); return {}; }
+  try { return JSON.parse(localStorage.getItem(CL_KEY)) || {}; } catch { return {}; }
+}
+
+function saveCL(state) { localStorage.setItem(CL_KEY, JSON.stringify(state)); }
+
+function renderChecklist(semana, dia) {
+  const container = document.getElementById('checklistContainer');
+  const state = loadCL();
+
+  // Gera tarefas a partir dos slots do dia
+  const tasks = [];
+  dia.slots.forEach((slot, si) => {
+    const dotCls = slot.cls === 'sq' ? 'q' : slot.cls === 'sp' ? 'p' : slot.cls === 'sm' ? 'm' : slot.cls === 'sg' ? 'g' : slot.cls === 'sh' ? 'h' : 'r';
+    tasks.push({ id:`${semana.num}-${dia.id}-${si}-aula`, label:`${slot.materia} · ${slot.tipo}`, sub: slot.tema, tempo: slot.tempo, dot: dotCls });
+    if (slot.questoes > 0) {
+      tasks.push({ id:`${semana.num}-${dia.id}-${si}-q`, label:`${slot.materia} · Resolver ${slot.questoes} questões`, sub: '', tempo: '~20 min', dot: dotCls });
+    }
+  });
+
+  const done  = tasks.filter(t => state[t.id]).length;
+  const total = tasks.length;
+  const pct   = total > 0 ? Math.round((done/total)*100) : 0;
+
+  container.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem">
+      <span style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:var(--ink)">${dia.label} · ${semana.label.split('·')[0].trim()}</span>
+      <span style="font-size:12px;color:var(--ink-faint)">${done}/${total} concluídos</span>
+    </div>
+    <div class="checklist-progress-bar"><div class="checklist-progress-fill" style="width:${pct}%"></div></div>
+    <div class="checklist-list" id="clList"></div>`;
+
+  const list = document.getElementById('clList');
+  tasks.forEach(task => {
+    const isDone = !!state[task.id];
+    const item = document.createElement('div');
+    item.className = 'cl-item' + (isDone ? ' done' : '');
+    item.innerHTML = `
+      <div class="cl-check">
+        <svg class="cl-check-svg" viewBox="0 0 10 8" fill="none">
+          <polyline points="1,4 3.5,6.5 9,1" stroke="#F5F0E8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="cl-dot ${task.dot}"></div>
+      <span class="cl-label">${task.label}${task.sub ? `<br><span style="font-size:11px;color:var(--ink-faint)">${task.sub}</span>` : ''}</span>
+      <span class="cl-tempo">${task.tempo}</span>`;
+    item.addEventListener('click', () => {
+      const s = loadCL();
+      s[task.id] = !s[task.id];
+      saveCL(s);
+      renderChecklist(semana, dia);
     });
-
-    daysEl.appendChild(panel);
-  });
-
-  // abre o dia atual automaticamente
-  const DAY_MAP = ['sab', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab'];
-  const todayKey = DAY_MAP[new Date().getDay()];
-  switchDay(todayKey);
-}
-
-function switchDay(id) {
-  document.querySelectorAll('.crono-day').forEach(d => d.classList.remove('active'));
-  document.querySelectorAll('.crono-tab').forEach(b => b.classList.remove('active'));
-  const panel = document.getElementById('crono-' + id);
-  const btn   = document.querySelector(`.crono-tab[data-id="${id}"]`);
-  if (panel) panel.classList.add('active');
-  if (btn)   btn.classList.add('active');
-}
-
-// ---------- LEITURAS ----------
-
-function buildLeituras() {
-  const list = document.getElementById('livroList');
-  LEITURAS.forEach((livro, i) => {
-    const li = document.createElement('li');
-    li.className = 'livro-item';
-    li.innerHTML = `
-      <span class="livro-num">${String(i + 1).padStart(2, '0')}</span>
-      <span class="livro-titulo">${livro.titulo} <span class="livro-ano">(${livro.ano})</span></span>
-      <span class="livro-autor">${livro.autor}</span>
-    `;
-    list.appendChild(li);
+    list.appendChild(item);
   });
 }
 
-// ---------- MATÉRIAS (toggle) ----------
-
-function toggle(card) {
-  const isOpen = card.classList.contains('open');
-  document.querySelectorAll('.materia-card.open').forEach(c => c.classList.remove('open'));
-  if (!isOpen) card.classList.add('open');
+function resetChecklist() {
+  localStorage.removeItem(CL_KEY);
+  if (semanaAtiva && diaAtivo) {
+    const dia = semanaAtiva.dias.find(d => d.id === diaAtivo);
+    if (dia) renderChecklist(semanaAtiva, dia);
+  }
 }
 
-// ---------- INIT ----------
-
-buildCronograma();
+// ─── INIT ────────────────────────────────────────────────────────────
+buildSemanaSelect();
 buildLeituras();
